@@ -15,15 +15,15 @@ export default function AboutMe(props) {
   const fadeInSubscription = ScrollService.currentScreenFadeIn.subscribe(fadeInScreenHandler)
 
   const SCREEN_CONSTANTS = {
-    description: "Full stack web and mobile developer with background knowledge of MERN stacks with redux, along with a knack of building applications with utmost efficiency. An enthusiastic learner with solid skills, eager to make a positive impact within an organization.",
+    description: "Frontend developer with strong expertise in building responsive and efficient web applications using modern technologies, including React.js and Redux. Adept at crafting intuitive user interfaces and ensuring seamless user experiences. An enthusiastic learner with solid technical skills, eager to contribute and make a positive impact within an organization.",
     highlights: {
       bullets: [
-        "Full Stack web and mobile development",
-        "Interactive Front End as per the design",
-        "React and React Native",
-        "Redux for State Mnanagement",
-        "Building REST API",
-        "Managing database",
+        "Expertise in responsive web development",
+        "Creating interactive, user-friendly interfaces from design specs",
+        "Proficient in React for modern web development",
+        "Skilled in Redux for efficient state management",
+        "Collaborating with backend teams to integrate APIs",
+        "Optimizing frontend performance",
       ],
       heading: "Here are a Few Highlights:",
     }
@@ -78,7 +78,7 @@ export default function AboutMe(props) {
               Hire{" "}
             </button>
 
-              <a href='ehizcv.pdf' download='Ozoemena ehizcv.pdf'>
+              <a href='Ozoemena-Emmanuel-Resume.pdf' download='ozoemena.pdf'>
                 <button className='btn highlighted-btn'>Get Resume</button>
               </a>
           </div>
