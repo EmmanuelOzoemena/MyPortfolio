@@ -1,5 +1,6 @@
 import Hero from "./components/Hero";
 import Navbar from "./components/Navbar";
+import Experience from "./components/Experience";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        {/* We will add the Project Slider next! */}
+        <Experience />
       </main>
     </div>
   );

@@ -45,9 +45,9 @@ const Navbar = () => {
         {/* Logo */}
         <Link
           to="/"
-          className="text-2xl font-black tracking-tighter dark:text-white"
+          className="text-xl font-black tracking-tighter dark:text-white flex items-center gap-1"
         >
-          E<span className="text-blue-600">C</span>O
+          EMMANUEL <span className="text-blue-600">OZOEMENA</span>
         </Link>
 
         {/* Desktop: Capsule Menu */}
