@@ -5,7 +5,7 @@ import { FiSearch, FiExternalLink } from "react-icons/fi";
 
 const ProjectGallery = () => {
   // 1. Properly define all necessary states
-  const [projects, setProjects] = useState([]); 
+  const [projects, setProjects] = useState([]);
   const [filter, setFilter] = useState("All");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
@@ -54,7 +54,7 @@ const ProjectGallery = () => {
       <div className="container mx-auto px-6">
         {/* Header Area */}
         <div className="mb-16">
-          <motion.h1 
+          <motion.h1
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             className="text-5xl md:text-7xl font-black dark:text-white mb-4 italic uppercase tracking-tighter"
@@ -67,22 +67,14 @@ const ProjectGallery = () => {
           </p>
         </div>
 
-<<<<<<< HEAD
         {/* Filter & Search Bar */}
-=======
-        {/* Filter & Search Bar (The Shop UI) */}
->>>>>>> cfbc9930fee09d1af2b804587acab34bd3e8247c
         <div className="flex flex-col md:flex-row gap-6 justify-between items-center mb-12">
           <div className="flex gap-2 overflow-x-auto pb-2 w-full md:w-auto no-scrollbar">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-<<<<<<< HEAD
                 className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all border whitespace-nowrap ${
-=======
-                className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all border ${
->>>>>>> cfbc9930fee09d1af2b804587acab34bd3e8247c
                   filter === cat
                     ? "bg-blue-600 border-blue-600 text-white shadow-lg shadow-blue-500/20"
                     : "border-gray-200 dark:border-white/10 text-gray-500 hover:border-blue-600"
@@ -106,14 +98,10 @@ const ProjectGallery = () => {
         </div>
 
         {/* Projects Grid */}
-<<<<<<< HEAD
-        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-=======
         <motion.div
           layout
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
->>>>>>> cfbc9930fee09d1af2b804587acab34bd3e8247c
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
@@ -134,11 +122,8 @@ const ProjectGallery = () => {
                   <div className="absolute top-4 right-4 flex gap-2">
                     <a
                       href={project.link}
-<<<<<<< HEAD
                       target="_blank"
                       rel="noopener noreferrer"
-=======
->>>>>>> cfbc9930fee09d1af2b804587acab34bd3e8247c
                       className="p-2 bg-white/20 backdrop-blur-md rounded-full text-white hover:bg-blue-600 transition-colors"
                     >
                       <FiExternalLink />
