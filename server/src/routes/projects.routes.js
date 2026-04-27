@@ -2,7 +2,7 @@ import express from "express";
 import {
   getProjects,
   createProject,
-} from "../controllers/projectController.js";
+} from "../controllers/projects.controller.js";
 
 const router = express.Router();
 
