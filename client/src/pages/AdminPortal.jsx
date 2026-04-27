@@ -2,25 +2,46 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiPlus, FiArrowLeft, FiCheck, FiAlertCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { createProject } from "../services/project.api";
 
 const AdminPortal = () => {
-  const [formData, setFormData] = useState({
-    title: "",
-    category: "",
-    description: "",
-    tech: "",
-    image: "",
-    link: "",
-    github: "",
-    isBig: false,
-  });
-
+  const [title, setTitle] = useState("");
+  const [category, setCategory] = useState("");
+  const [description, setDescription] = useState("");
+  const [tech, setTech] = useState("");
+  const [image, setImage] = useState("");
+  const [link, setLink] = useState("");
+  const [github, setGithub] = useState("");
+  const [isBig, setIsBig] = useState(false);
   const [status, setStatus] = useState({ type: "", msg: "" }); // types: 'success', 'error', 'loading'
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
-    // Your custom API integration logic goes here
-    console.log("Form Data Captured:", formData);
+
+    try {
+      const response = await createProject(
+        title,
+        category,
+        description,
+        tech
+          .split(",")
+          .map((item) => item.trim())
+          .filter((item) => item !== ""),
+        image,
+        link,
+        github,
+        isBig,
+      );
+
+      if (response?.status === 201) {
+        alert("Project Uploaded!");
+      } else {
+        alert("Something went wrong.");
+      }
+    } catch (error) {
+      console.error("Error during uploading:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
@@ -79,10 +100,8 @@ const AdminPortal = () => {
               className="bg-black/50 border border-white/10 p-5 rounded-2xl focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-gray-700"
               type="text"
               placeholder="e.g. LastPrice Platform"
-              value={formData.title}
-              onChange={(e) =>
-                setFormData({ ...formData, title: e.target.value })
-              }
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </div>
 
@@ -96,10 +115,8 @@ const AdminPortal = () => {
               className="bg-black/50 border border-white/10 p-5 rounded-2xl focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-gray-700"
               type="text"
               placeholder="e.g. Full Stack MERN"
-              value={formData.category}
-              onChange={(e) =>
-                setFormData({ ...formData, category: e.target.value })
-              }
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
             />
           </div>
 
@@ -113,10 +130,8 @@ const AdminPortal = () => {
               rows="4"
               className="bg-black/50 border border-white/10 p-5 rounded-2xl focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-gray-700 resize-none"
               placeholder="Describe the core functionality and technical challenges..."
-              value={formData.description}
-              onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
-              }
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
             />
           </div>
 
@@ -130,10 +145,8 @@ const AdminPortal = () => {
               className="bg-black/50 border border-white/10 p-5 rounded-2xl focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-gray-700"
               type="text"
               placeholder="React, Tailwind, Node.js"
-              value={formData.tech}
-              onChange={(e) =>
-                setFormData({ ...formData, tech: e.target.value })
-              }
+              value={tech}
+              onChange={(e) => setTech(e.target.value)}
             />
           </div>
 
@@ -147,10 +160,8 @@ const AdminPortal = () => {
               className="bg-black/50 border border-white/10 p-5 rounded-2xl focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-gray-700"
               type="text"
               placeholder="https://cloudinary.com/your-image"
-              value={formData.image}
-              onChange={(e) =>
-                setFormData({ ...formData, image: e.target.value })
-              }
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
             />
           </div>
 
@@ -163,10 +174,8 @@ const AdminPortal = () => {
               className="bg-black/50 border border-white/10 p-5 rounded-2xl focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-gray-700"
               type="text"
               placeholder="Optional"
-              value={formData.link}
-              onChange={(e) =>
-                setFormData({ ...formData, link: e.target.value })
-              }
+              value={link}
+              onChange={(e) => setLink(e.target.value)}
             />
           </div>
 
@@ -178,10 +187,8 @@ const AdminPortal = () => {
               className="bg-black/50 border border-white/10 p-5 rounded-2xl focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-gray-700"
               type="text"
               placeholder="Optional"
-              value={formData.github}
-              onChange={(e) =>
-                setFormData({ ...formData, github: e.target.value })
-              }
+              value={github}
+              onChange={(e) => setGithub(e.target.value)}
             />
           </div>
 
@@ -191,10 +198,8 @@ const AdminPortal = () => {
               type="checkbox"
               className="w-6 h-6 rounded accent-blue-600 cursor-pointer"
               id="isBig"
-              checked={formData.isBig}
-              onChange={(e) =>
-                setFormData({ ...formData, isBig: e.target.checked })
-              }
+              checked={isBig}
+              onChange={(e) => setIsBig(e.target.value)}
             />
             <label
               htmlFor="isBig"

@@ -1,9 +1,9 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FiArrowRight } from "react-icons/fi";
-import { projects } from "../data/projects";
+import { getProjects } from "../services/project.api"; // Import your API helper
 
-// Brand color mapping
 const techColors = {
   React: "#61DAFB",
   "Node.js": "#339933",
@@ -19,9 +19,31 @@ const techColors = {
 };
 
 const ProjectSlider = () => {
-  const bigProjects = projects.filter((p) => p.isBig);
-  // Duplicate the list to create the infinite loop effect
-  const duplicatedProjects = [...bigProjects, ...bigProjects];
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchFeatured = async () => {
+      try {
+        const response = await getProjects();
+        if (response && response.data) {
+          // Filter only the 'big' projects from the database
+          const featured = response.data.filter((p) => p.isBig);
+          setProjects(featured);
+        }
+      } catch (error) {
+        console.error("Slider fetch error:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchFeatured();
+  }, []);
+
+  // Create the loop effect by duplicating the fetched projects
+  const duplicatedProjects = [...projects, ...projects];
+
+  if (loading || projects.length === 0) return null; // Hide section while loading
 
   return (
     <section
@@ -46,26 +68,25 @@ const ProjectSlider = () => {
         </Link>
       </div>
 
-      {/* Infinite Scrolling Container */}
       <div className="flex relative">
         <motion.div
           className="flex gap-8 px-4"
-          animate={{ x: [0, -1800] }} // Adjust -1800 based on your total content width
+          // We calculate the width based on the number of projects to keep it smooth
+          animate={{ x: [0, -100 * projects.length + "%"] }}
           transition={{
             x: {
               repeat: Infinity,
               repeatType: "loop",
-              duration: 30, // Increase for "Slower" motion
+              duration: projects.length * 5, // Adjust speed based on item count
               ease: "linear",
             },
           }}
         >
           {duplicatedProjects.map((project, index) => (
             <motion.div
-              key={`${project.id}-${index}`}
+              key={`${project._id}-${index}`}
               className="min-w-[350px] md:min-w-[500px] lg:min-w-[calc(33.33vw-2rem)] h-[450px] rounded-3xl overflow-hidden relative group border border-white/5"
             >
-              {/* Image & Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
               <img
                 src={project.image}
@@ -73,7 +94,6 @@ const ProjectSlider = () => {
                 className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
               />
 
-              {/* Content */}
               <div className="absolute bottom-0 left-0 p-8 z-20 w-full translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                 <span className="text-blue-500 font-mono text-xs font-bold uppercase tracking-widest">
                   {project.category}
@@ -82,7 +102,6 @@ const ProjectSlider = () => {
                   {project.title}
                 </h3>
 
-                {/* Tech Stack with Dynamic Colors */}
                 <div className="flex flex-wrap gap-3">
                   {project.tech.map((t) => (
                     <span

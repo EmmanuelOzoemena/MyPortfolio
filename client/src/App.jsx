@@ -11,7 +11,7 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/admin-control-center" element={<AdminPortal />} />
+        <Route path="/admin-control" element={<AdminPortal />} />
         <Route path="/projects" element={<ProjectGallery />} />
       </Routes>
     </div>
