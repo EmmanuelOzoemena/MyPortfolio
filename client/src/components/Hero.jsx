@@ -1,9 +1,13 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden bg-grid">
+    <section
+      className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden bg-grid"
+      id="hero"
+    >
       {/* Decorative Floating Circle */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
@@ -39,25 +43,32 @@ const Hero = () => {
             transition={{ delay: 0.4 }}
             className="text-lg text-gray-600 dark:text-gray-400 max-w-lg mb-8 leading-relaxed"
           >
-            I architect scalable web applications powering ideas from concept to scale.
-            Currently transitioning from frontend mastery to full-stack depth.
+            I architect scalable web applications powering ideas from concept to
+            scale. Currently transitioning from frontend mastery to full-stack
+            depth.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6 }}
-            className="flex gap-4"
+            className="flex flex-col sm:flex-row gap-4"
           >
             <Link
               to="/projects"
-              className="px-8 py-4 bg-black dark:bg-white dark:text-black text-white rounded-full font-bold hover:scale-105 transition-transform"
+              className="px-10 py-4 bg-blue-600 text-white rounded-full font-bold hover:scale-105 hover:shadow-lg hover:shadow-blue-500/30 transition-all text-center"
             >
               View Work
             </Link>
-            <button className="px-8 py-4 border border-gray-300 dark:border-gray-700 rounded-full font-bold hover:bg-gray-50 dark:hover:bg-gray-900 transition-colors">
-              Read Blog
-            </button>
+            <ScrollLink
+              to="contact"
+              smooth={true}
+              duration={1000} // Slightly slower for the longer scroll to the bottom
+              offset={-80}
+              className="px-10 py-4 border-2 border-white text-white rounded-full font-bold hover:bg-white hover:text-black transition-all text-center cursor-pointer"
+            >
+              Let's Talk
+            </ScrollLink>
           </motion.div>
         </div>
       </div>

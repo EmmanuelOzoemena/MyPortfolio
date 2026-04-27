@@ -1,0 +1,137 @@
+import { motion } from "framer-motion";
+import { FiLayout, FiServer, FiCode, FiSmartphone } from "react-icons/fi";
+import {
+  SiHtml5,
+  SiJavascript,
+  SiReact,
+  SiTailwindcss,
+  SiSass,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiPostgresql,
+  SiPrisma,
+  SiGithub,
+} from "react-icons/si";
+
+const services = [
+  {
+    title: "Frontend Architecture",
+    desc: "Building silky, high-performance SPAs with React and Next.js, focused on accessibility and UX.",
+    icon: <FiLayout className="text-blue-500" size={24} />,
+  },
+  {
+    title: "Backend Systems",
+    desc: "Architecting scalable REST APIs and database structures using MERN and PostgreSQL.",
+    icon: <FiServer className="text-emerald-500" size={24} />,
+  },
+  {
+    title: "Full-Stack Integration",
+    desc: "Seamlessly bridging the gap between client-side interfaces and server-side logic.",
+    icon: <FiCode className="text-purple-500" size={24} />,
+  },
+  {
+    title: "Technical Training",
+    desc: "Breaking down complex engineering concepts into digestible, actionable learning paths.",
+    icon: <FiSmartphone className="text-orange-500" size={24} />,
+  },
+];
+
+const stack = [
+  { name: "HTML5", icon: <SiHtml5 />, color: "#E34F26" },
+  { name: "JavaScript", icon: <SiJavascript />, color: "#F7DF1E" },
+  { name: "React", icon: <SiReact />, color: "#61DAFB" },
+  { name: "Tailwind", icon: <SiTailwindcss />, color: "#06B6D4" },
+  { name: "SASS", icon: <SiSass />, color: "#CC6699" },
+  { name: "Next.js", icon: <SiNextdotjs />, color: "#FFFFFF" },
+  { name: "Node.js", icon: <SiNodedotjs />, color: "#339933" },
+  { name: "Express", icon: <SiExpress />, color: "#A8A8A8" },
+  { name: "MongoDB", icon: <SiMongodb />, color: "#47A248" },
+  { name: "PostgreSQL", icon: <SiPostgresql />, color: "#4169E1" },
+  { name: "Prisma", icon: <SiPrisma />, color: "#2D3748" },
+  { name: "GitHub", icon: <SiGithub />, color: "#FFFFFF" },
+];
+
+const AboutMe = () => {
+  return (
+    <section
+      id="about"
+      className="py-24 relative overflow-hidden bg-white dark:bg-[#080808]"
+    >
+      <div className="container mx-auto px-6 relative z-10">
+        {/* Top Section */}
+        <div className="max-w-3xl mb-20">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-5xl md:text-7xl font-black dark:text-white mb-6 tracking-tighter"
+          >
+            I SCALE <br /> <span className="text-blue-600">IDEAS</span> INTO
+            CODE.
+          </motion.h2>
+          <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+            I’m a Full-Stack Engineer based in Lagos, dedicated to the "building
+            in public" philosophy. I engineer digital experiences that are fast,
+            accessible, and technically sound.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Left Column: Services */}
+          <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
+            {services.map((service, i) => (
+              <motion.div
+                key={i}
+                whileHover={{ y: -5 }}
+                className="p-8 rounded-3xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:border-blue-500/50 transition-all shadow-xl"
+              >
+                <div className="mb-4">{service.icon}</div>
+                <h3 className="text-xl font-bold dark:text-white mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                  {service.desc}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Right Column: Tech Stack "Bento Box" */}
+          <div className="p-8 rounded-3xl bg-black text-white flex flex-col justify-between overflow-hidden relative min-h-[450px]">
+            <div className="relative z-10">
+              <h3 className="text-2xl font-bold mb-8">Technical Engine</h3>
+              <div className="grid grid-cols-4 gap-y-8 gap-x-4">
+                {stack.map((tech, i) => (
+                  <motion.div
+                    key={i}
+                    whileHover={{ scale: 1.1 }}
+                    className="group flex flex-col items-center gap-2 cursor-pointer"
+                  >
+                    <div
+                      className="text-3xl transition-transform duration-300 group-hover:-translate-y-1"
+                      style={{ color: tech.color }}
+                    >
+                      {tech.icon}
+                    </div>
+                    {/* Name appears on hover */}
+                    <span className="text-[9px] font-mono font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-400">
+                      {tech.name}
+                    </span>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
+            <div className="absolute -bottom-10 -right-10 text-[6rem] font-black opacity-10 italic select-none">
+              STACK
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default AboutMe;
