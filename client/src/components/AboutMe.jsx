@@ -39,20 +39,18 @@ const services = [
 ];
 
 const stack = [
-  { name: "HTML5", icon: <SiHtml5 />, color: "hover:text-[#E34F26]" },
-  // { name: "CSS3", icon: <SiCss3 />, color: "hover:text-[#1572B6]" },
-  { name: "JavaScript", icon: <SiJavascript />, color: "hover:text-[#F7DF1E]" },
-  { name: "React", icon: <SiReact />, color: "hover:text-[#61DAFB]" },
-  { name: "Tailwind", icon: <SiTailwindcss />, color: "hover:text-[#06B6D4]" },
-  { name: "SASS", icon: <SiSass />, color: "hover:text-[#CC6699]" },
-  { name: "Next.js", icon: <SiNextdotjs />, color: "hover:text-white" },
-  { name: "Node.js", icon: <SiNodedotjs />, color: "hover:text-[#339933]" },
-  { name: "Express", icon: <SiExpress />, color: "hover:text-gray-400" },
-  { name: "MongoDB", icon: <SiMongodb />, color: "hover:text-[#47A248]" },
-  { name: "PostgreSQL", icon: <SiPostgresql />, color: "hover:text-[#4169E1]" },
-  { name: "Prisma", icon: <SiPrisma />, color: "hover:text-[#2D3748]" },
-  { name: "GitHub", icon: <SiGithub />, color: "hover:text-white" },
-  // { name: "AWS", icon: <SiAmazonwebservices />, color: "hover:text-[#FF9900]" },
+  { name: "HTML5", icon: <SiHtml5 />, color: "#E34F26" },
+  { name: "JavaScript", icon: <SiJavascript />, color: "#F7DF1E" },
+  { name: "React", icon: <SiReact />, color: "#61DAFB" },
+  { name: "Tailwind", icon: <SiTailwindcss />, color: "#06B6D4" },
+  { name: "SASS", icon: <SiSass />, color: "#CC6699" },
+  { name: "Next.js", icon: <SiNextdotjs />, color: "#FFFFFF" },
+  { name: "Node.js", icon: <SiNodedotjs />, color: "#339933" },
+  { name: "Express", icon: <SiExpress />, color: "#A8A8A8" },
+  { name: "MongoDB", icon: <SiMongodb />, color: "#47A248" },
+  { name: "PostgreSQL", icon: <SiPostgresql />, color: "#4169E1" },
+  { name: "Prisma", icon: <SiPrisma />, color: "#2D3748" },
+  { name: "GitHub", icon: <SiGithub />, color: "#FFFFFF" },
 ];
 
 const AboutMe = () => {
@@ -60,7 +58,6 @@ const AboutMe = () => {
     <section
       id="about"
       className="py-24 relative overflow-hidden bg-white dark:bg-[#080808]"
-      id="about"
     >
       <div className="container mx-auto px-6 relative z-10">
         {/* Top Section */}
@@ -68,6 +65,7 @@ const AboutMe = () => {
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
             className="text-5xl md:text-7xl font-black dark:text-white mb-6 tracking-tighter"
           >
             I SCALE <br /> <span className="text-blue-600">IDEAS</span> INTO
@@ -101,19 +99,24 @@ const AboutMe = () => {
           </div>
 
           {/* Right Column: Tech Stack "Bento Box" */}
-          <div className="p-8 rounded-3xl bg-black text-white flex flex-col justify-between overflow-hidden relative min-h-[400px]">
+          <div className="p-8 rounded-3xl bg-black text-white flex flex-col justify-between overflow-hidden relative min-h-[450px]">
             <div className="relative z-10">
               <h3 className="text-2xl font-bold mb-8">Technical Engine</h3>
-              <div className="grid grid-cols-4 gap-6">
+              <div className="grid grid-cols-4 gap-y-8 gap-x-4">
                 {stack.map((tech, i) => (
                   <motion.div
                     key={i}
-                    whileHover={{ scale: 1.2, rotate: 5 }}
-                    className={`text-3xl text-gray-500 flex flex-col items-center gap-2 cursor-pointer transition-colors ${tech.color}`}
-                    title={tech.name}
+                    whileHover={{ scale: 1.1 }}
+                    className="group flex flex-col items-center gap-2 cursor-pointer"
                   >
-                    {tech.icon}
-                    <span className="text-[10px] font-mono opacity-0 hover:opacity-100 transition-opacity">
+                    <div
+                      className="text-3xl transition-transform duration-300 group-hover:-translate-y-1"
+                      style={{ color: tech.color }}
+                    >
+                      {tech.icon}
+                    </div>
+                    {/* Name appears on hover */}
+                    <span className="text-[9px] font-mono font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-400">
                       {tech.name}
                     </span>
                   </motion.div>
