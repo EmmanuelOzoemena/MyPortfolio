@@ -77,7 +77,7 @@ const Contact = () => {
             {[
               { icon: <FiLinkedin />, link: "https://linkedin.com/in/emmanuelozo" },
               { icon: <FiGithub />, link: "https://github.com/EmmanuelOzoemena" },
-              { icon: <FiTwitter />, link: "https://x.com/yourhandle" }
+              { icon: <FiTwitter />, link: "https://x.com/emmanuel_oz1" }
             ].map((social, i) => (
               <motion.a
                 key={i}

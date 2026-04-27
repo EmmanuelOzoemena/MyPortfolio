@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
+import { Link as ScrollLink } from "react-scroll";
 
 const Hero = () => {
   return (
@@ -59,13 +60,15 @@ const Hero = () => {
             >
               View Work
             </Link>
-
-            <Link
-              to="/contact"
-              className="px-10 py-4 border-2 border-gray-900 dark:border-white dark:text-white text-gray-900 rounded-full font-bold hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition-all text-center"
+            <ScrollLink
+              to="contact"
+              smooth={true}
+              duration={1000} // Slightly slower for the longer scroll to the bottom
+              offset={-80}
+              className="px-10 py-4 border-2 border-white text-white rounded-full font-bold hover:bg-white hover:text-black transition-all text-center cursor-pointer"
             >
               Let's Talk
-            </Link>
+            </ScrollLink>
           </motion.div>
         </div>
       </div>
