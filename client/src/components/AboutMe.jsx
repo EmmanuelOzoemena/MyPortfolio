@@ -1,11 +1,18 @@
 import { motion } from "framer-motion";
-import { 
-  FiLayout, FiServer, FiCode, FiSmartphone 
-} from "react-icons/fi";
-import { 
-  SiHtml5, SiJavascript, SiReact, SiTailwindcss, 
-  SiSass, SiNextdotjs, SiNodedotjs, SiExpress, 
-  SiMongodb, SiPostgresql, SiPrisma, SiGithub
+import { FiLayout, FiServer, FiCode, FiSmartphone } from "react-icons/fi";
+import {
+  SiHtml5,
+  SiJavascript,
+  SiReact,
+  SiTailwindcss,
+  SiSass,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiExpress,
+  SiMongodb,
+  SiPostgresql,
+  SiPrisma,
+  SiGithub,
 } from "react-icons/si";
 
 const services = [
@@ -50,26 +57,30 @@ const stack = [
 
 const AboutMe = () => {
   return (
-    <section id="about" className="py-24 relative overflow-hidden bg-white dark:bg-[#080808]">
+    <section
+      id="about"
+      className="py-24 relative overflow-hidden bg-white dark:bg-[#080808]"
+      id="about"
+    >
       <div className="container mx-auto px-6 relative z-10">
-        
         {/* Top Section */}
         <div className="max-w-3xl mb-20">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             className="text-5xl md:text-7xl font-black dark:text-white mb-6 tracking-tighter"
           >
-            I SCALE <br /> <span className="text-blue-600">IDEAS</span> INTO CODE.
+            I SCALE <br /> <span className="text-blue-600">IDEAS</span> INTO
+            CODE.
           </motion.h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-            I’m a Full-Stack Engineer based in Lagos, dedicated to the "building in public" philosophy. 
-            I engineer digital experiences that are fast, accessible, and technically sound.
+            I’m a Full-Stack Engineer based in Lagos, dedicated to the "building
+            in public" philosophy. I engineer digital experiences that are fast,
+            accessible, and technically sound.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          
           {/* Left Column: Services */}
           <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-6">
             {services.map((service, i) => (
@@ -79,7 +90,9 @@ const AboutMe = () => {
                 className="p-8 rounded-3xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:border-blue-500/50 transition-all shadow-xl"
               >
                 <div className="mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold dark:text-white mb-3">{service.title}</h3>
+                <h3 className="text-xl font-bold dark:text-white mb-3">
+                  {service.title}
+                </h3>
                 <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                   {service.desc}
                 </p>
@@ -107,12 +120,11 @@ const AboutMe = () => {
                 ))}
               </div>
             </div>
-            
+
             <div className="absolute -bottom-10 -right-10 text-[6rem] font-black opacity-10 italic select-none">
               STACK
             </div>
           </div>
-
         </div>
       </div>
     </section>

@@ -3,7 +3,10 @@ import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden bg-grid">
+    <section
+      className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden bg-grid"
+      id="hero"
+    >
       {/* Decorative Floating Circle */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
