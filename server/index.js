@@ -16,7 +16,7 @@ const app = express();
 // Middleware
 const allowedOrigins = [
   'http://localhost:5173', 
-  // 'https://cchs-activity-tracker.vercel.app'
+  'https://emmanuel-ozoemena.vercel.app/'
 ];
 
 app.use(cors({
