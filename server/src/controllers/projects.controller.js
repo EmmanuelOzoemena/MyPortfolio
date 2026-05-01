@@ -27,21 +27,19 @@ export const getProjects = async (req, res) => {
 
 export const createProject = async (req, res) => {
   try {
+    const { title, category, description, tech, link, github, isBig } =
+      req.body;
+
     if (!req.file) {
       return res.status(400).json({ error: "Please upload a project picture" });
     }
 
-    const { title, category, description, tech, link, github, isBig } =
-      req.body;
-
-    // 3. Create the new project and manually add the Cloudinary URL
     const newProject = new Project({
       title,
       category,
       description,
-      // If tech comes as a string (from FormData), convert it to an array
       tech:
-        typeof tech === "string" ? tech.split(",").map((s) => s.trim()) : tech,
+        typeof tech === "string" ? tech.split(",").map((t) => t.trim()) : tech,
       link,
       github,
       isBig: isBig === "true" || isBig === true,
@@ -49,12 +47,14 @@ export const createProject = async (req, res) => {
       cloudinaryId: req.file.filename,
     });
 
-    const savedProject = await newProject.save();
-    res.status(201).json(savedProject);
+    await newProject.save();
+
+    res.status(201).json({
+      message: "Project created successfully!",
+      data: newProject,
+    });
   } catch (error) {
-    console.error("Error creating project:", error);
-    res
-      .status(400)
-      .json({ message: "Error creating project", error: error.message });
+    console.error("Project Create Error:", error);
+    res.status(500).json({ error: "Internal Server Error" });
   }
 };
