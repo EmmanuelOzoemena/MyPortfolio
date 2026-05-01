@@ -10,7 +10,6 @@ const projectSchema = new mongoose.Schema(
     category: {
       type: String,
       required: true,
-      // enum: ["Full Stack", "Frontend", "Education", "Basic"],
     },
 
     description: {
@@ -23,6 +22,12 @@ const projectSchema = new mongoose.Schema(
     image: {
       type: String,
       default: "https://via.placeholder.com/600x400",
+      required: true,
+    },
+
+    cloudinaryId: {
+      type: String,
+      required: true,
     },
 
     link: {
