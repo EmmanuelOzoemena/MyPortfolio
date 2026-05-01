@@ -3,7 +3,7 @@ import {
   getProjects,
   createProject,
 } from "../controllers/projects.controller.js";
-import upload from "../config/cloudinary.js";
+import { upload } from "../config/cloudinary.js";
 
 const router = express.Router();
 
