@@ -90,7 +90,7 @@ const ProjectSlider = () => {
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: projects.length * 20, // Adjusted speed for better UX
+                duration: projects.length * 50, // Adjusted speed for better UX
                 ease: "linear",
               },
             }}

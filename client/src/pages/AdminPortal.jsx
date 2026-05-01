@@ -1,6 +1,12 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiPlus, FiArrowLeft, FiCheck, FiAlertCircle } from "react-icons/fi";
+import {
+  FiPlus,
+  FiArrowLeft,
+  FiCheck,
+  FiAlertCircle,
+  FiUploadCloud,
+} from "react-icons/fi";
 import { Link } from "react-router-dom";
 import { createProject } from "../services/project.api";
 
@@ -9,38 +15,48 @@ const AdminPortal = () => {
   const [category, setCategory] = useState("");
   const [description, setDescription] = useState("");
   const [tech, setTech] = useState("");
-  const [image, setImage] = useState("");
+  const [image, setImage] = useState(null);
   const [link, setLink] = useState("");
   const [github, setGithub] = useState("");
   const [isBig, setIsBig] = useState(false);
-  const [status, setStatus] = useState({ type: "", msg: "" }); // types: 'success', 'error', 'loading'
+  const [status, setStatus] = useState({ type: "", msg: "" });
 
   const handleFormSubmit = async (e) => {
     e.preventDefault();
+    setStatus({ type: "loading", msg: "Uploading to production..." });
 
     try {
-      const response = await createProject(
+      const projectData = {
         title,
         category,
         description,
-        tech
-          .split(",")
-          .map((item) => item.trim())
-          .filter((item) => item !== ""),
+        tech,
         image,
         link,
         github,
         isBig,
-      );
+      };
+
+      const response = await createProject(projectData);
 
       if (response?.status === 201) {
-        alert("Project Uploaded!");
-      } else {
-        alert("Something went wrong.");
+        setStatus({ type: "success", msg: "Project Successfully Launched!" });
+        // Reset Form
+        setTitle("");
+        setCategory("");
+        setDescription("");
+        setTech("");
+        setImage(null);
+        setLink("");
+        setGithub("");
+        setIsBig(false);
       }
     } catch (error) {
-      console.error("Error during uploading:", error);
-      alert("An error occurred. Please try again.");
+      console.error("Upload Error:", error);
+      setStatus({
+        type: "error",
+        msg: error.response?.data?.error || "Upload Failed",
+      });
     }
   };
 
@@ -153,16 +169,25 @@ const AdminPortal = () => {
           {/* Asset URL */}
           <div className="flex flex-col gap-3">
             <label className="text-[10px] font-black uppercase tracking-widest text-gray-500 ml-2">
-              Thumbnail Link
+              Thumbnail Upload
             </label>
-            <input
-              required
-              className="bg-black/50 border border-white/10 p-5 rounded-2xl focus:border-blue-600 focus:ring-1 focus:ring-blue-600 outline-none transition-all placeholder:text-gray-700"
-              type="text"
-              placeholder="https://cloudinary.com/your-image"
-              value={image}
-              onChange={(e) => setImage(e.target.value)}
-            />
+            <div className="relative group">
+              <input
+                required
+                type="file"
+                accept="image/*"
+                onChange={(e) => setImage(e.target.files[0])}
+                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+              />
+              <div className="bg-black/50 border-2 border-dashed border-white/10 p-5 rounded-2xl flex items-center justify-center gap-3 group-hover:border-blue-600/50 transition-colors">
+                <FiUploadCloud
+                  className={image ? "text-emerald-400" : "text-gray-500"}
+                />
+                <span className="text-sm text-gray-400 truncate">
+                  {image ? image.name : "Choose project image..."}
+                </span>
+              </div>
+            </div>
           </div>
 
           {/* Links Section */}
