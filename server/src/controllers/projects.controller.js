@@ -10,7 +10,7 @@ export const getProjects = async (req, res) => {
       query.category = category;
     }
 
-    // Search Logic (Case-insensitive)
+    // Search Logic
     if (search) {
       query.$or = [
         { title: { $regex: search, $options: "i" } },
@@ -58,4 +58,3 @@ export const createProject = async (req, res) => {
     res.status(500).json({ error: "Internal Server Error" });
   }
 };
-
