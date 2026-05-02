@@ -85,12 +85,12 @@ const ProjectSlider = () => {
           <motion.div
             className="flex gap-8 px-4"
             // Ensure the width calculation is based on the new projects length
-            animate={{ x: [0, `-${100 * projects.length}%`] }}
+            animate={{ x: [0, "-50%"] }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: projects.length * 50, // Adjusted speed for better UX
+                duration: projects.length * 15, // Adjusted speed for better UX
                 ease: "linear",
               },
             }}
