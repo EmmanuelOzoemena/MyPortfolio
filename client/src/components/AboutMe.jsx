@@ -55,10 +55,7 @@ const stack = [
 
 const AboutMe = () => {
   return (
-    <section
-      id="about"
-      className="py-24 relative overflow-hidden bg-white dark:bg-[#080808]"
-    >
+    <section id="about" className="py-24 relative overflow-hidden bg-[#080808]">
       <div className="container mx-auto px-6 relative z-10">
         {/* Top Section */}
         <div className="max-w-3xl mb-20">
@@ -66,12 +63,12 @@ const AboutMe = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-5xl md:text-7xl font-black dark:text-white mb-6 tracking-tighter"
+            className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tighter"
           >
             I SCALE <br /> <span className="text-blue-600">IDEAS</span> INTO
             CODE.
           </motion.h2>
-          <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+          <p className="text-lg text-gray-400 leading-relaxed">
             I’m a Full-Stack Engineer based in Lagos, dedicated to the "building
             in public" philosophy. I engineer digital experiences that are fast,
             accessible, and technically sound.
@@ -85,13 +82,13 @@ const AboutMe = () => {
               <motion.div
                 key={i}
                 whileHover={{ y: -5 }}
-                className="p-8 rounded-3xl bg-gray-50 dark:bg-white/5 border border-gray-100 dark:border-white/10 hover:border-blue-500/50 transition-all shadow-xl"
+                className="p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-blue-500/50 transition-all shadow-xl backdrop-blur-sm"
               >
                 <div className="mb-4">{service.icon}</div>
-                <h3 className="text-xl font-bold dark:text-white mb-3">
+                <h3 className="text-xl font-bold text-white mb-3">
                   {service.title}
                 </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-400 leading-relaxed">
                   {service.desc}
                 </p>
               </motion.div>
@@ -99,7 +96,7 @@ const AboutMe = () => {
           </div>
 
           {/* Right Column: Tech Stack "Bento Box" */}
-          <div className="p-8 rounded-3xl bg-black text-white flex flex-col justify-between overflow-hidden relative min-h-[450px]">
+          <div className="p-8 rounded-3xl bg-black border border-white/10 text-white flex flex-col justify-between overflow-hidden relative min-h-[450px] shadow-2xl">
             <div className="relative z-10">
               <h3 className="text-2xl font-bold mb-8">Technical Engine</h3>
               <div className="grid grid-cols-4 gap-y-8 gap-x-4">
@@ -116,7 +113,7 @@ const AboutMe = () => {
                       {tech.icon}
                     </div>
                     {/* Name appears on hover */}
-                    <span className="text-[9px] font-mono font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-400">
+                    <span className="text-[9px] font-mono font-bold uppercase tracking-tighter opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-gray-500">
                       {tech.name}
                     </span>
                   </motion.div>
@@ -124,7 +121,7 @@ const AboutMe = () => {
               </div>
             </div>
 
-            <div className="absolute -bottom-10 -right-10 text-[6rem] font-black opacity-10 italic select-none">
+            <div className="absolute -bottom-10 -right-10 text-[6rem] font-black opacity-10 italic select-none pointer-events-none">
               STACK
             </div>
           </div>

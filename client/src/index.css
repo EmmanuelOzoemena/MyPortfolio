@@ -6,11 +6,7 @@
 }
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 255, 255, 255;
-}
-
-.dark {
+  /* Permanent Dark Theme Variables */
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 10, 10, 10;
 }
@@ -20,22 +16,16 @@
     color: rgb(var(--foreground-rgb));
     background: rgb(var(--background-start-rgb));
     font-family: "Inter", system-ui, sans-serif;
-    transition: background 0.3s ease, color 0.3s ease;
-    @apply min-h-screen;
+    /* Transition removed as it's no longer switching */
+    @apply min-h-screen antialiased;
   }
 }
 
-/* The Engineering Grid Pattern */
+/* Hardcoded Engineering Grid for Dark Theme */
 @layer utilities {
   .bg-grid {
     background-size: 40px 40px;
-    background-image: 
-      linear-gradient(to right, rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-  }
-
-  .dark .bg-grid {
-    background-image: 
+    background-image:
       linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
       linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   }

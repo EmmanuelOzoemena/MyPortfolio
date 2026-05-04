@@ -26,7 +26,6 @@ const ProjectSlider = () => {
     const fetchProjects = async () => {
       try {
         const res = await getProjects();
-
         if (res?.data) {
           setProjects(res.data);
         }
@@ -39,21 +38,20 @@ const ProjectSlider = () => {
     fetchProjects();
   }, []);
 
-  // Duplicate the array for the infinite loop effect
   const duplicatedProjects = [...projects, ...projects];
 
   return (
     <section
       id="projects"
-      className="py-24 bg-white dark:bg-[#050505] overflow-hidden"
+      className="py-24 bg-[#050505] overflow-hidden"
     >
       <div className="container mx-auto px-6 mb-12 flex justify-between items-end">
         <div>
-          <h2 className="text-4xl font-black dark:text-white uppercase tracking-tighter">
+          <h2 className="text-4xl font-black text-white uppercase tracking-tighter">
             Projects
           </h2>
           <p className="text-gray-500 font-mono tracking-widest uppercase text-xs mt-2">
-            Showcase
+            Selected Works
           </p>
         </div>
         <Link
@@ -70,12 +68,12 @@ const ProjectSlider = () => {
           {[...Array(3)].map((_, i) => (
             <div
               key={i}
-              className="min-w-[350px] md:min-w-[500px] h-[450px] rounded-3xl bg-gray-200 dark:bg-white/5 animate-pulse"
+              className="min-w-[350px] md:min-w-[500px] h-[450px] rounded-3xl bg-white/5 animate-pulse"
             />
           ))}
         </div>
       ) : projects.length === 0 ? (
-        <div className="flex justify-center items-center h-[200px] border-2 border-dashed border-gray-200 dark:border-white/10 rounded-3xl mx-6">
+        <div className="flex justify-center items-center h-[200px] border-2 border-dashed border-white/10 rounded-3xl mx-6">
           <p className="text-gray-500 font-mono text-sm">
             No projects found in the database.
           </p>
@@ -84,13 +82,12 @@ const ProjectSlider = () => {
         <div className="flex relative">
           <motion.div
             className="flex gap-8 px-4"
-            // Ensure the width calculation is based on the new projects length
             animate={{ x: [0, "-50%"] }}
             transition={{
               x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: projects.length * 15, // Adjusted speed for better UX
+                duration: projects.length * 15,
                 ease: "linear",
               },
             }}
@@ -100,6 +97,7 @@ const ProjectSlider = () => {
                 key={`${project._id || project.id}-${index}`}
                 className="min-w-[350px] md:min-w-[500px] lg:min-w-[calc(33.33vw-2rem)] h-[450px] rounded-3xl overflow-hidden relative group border border-white/5"
               >
+                {/* Fixed Overlay: Gradient stays dark always */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent z-10" />
 
                 <img

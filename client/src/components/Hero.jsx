@@ -8,11 +8,11 @@ const Hero = () => {
       className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden bg-grid"
       id="hero"
     >
-      {/* Decorative Floating Circle */}
+      {/* Decorative Glow */}
       <motion.div
         animate={{ scale: [1, 1.2, 1], rotate: [0, 90, 0] }}
         transition={{ duration: 20, repeat: Infinity }}
-        className="absolute -top-20 -right-20 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl"
+        className="absolute -top-20 -right-20 w-96 h-96 bg-blue-400/5 rounded-full blur-3xl"
       />
 
       <div className="container mx-auto px-6 relative z-10">
@@ -29,10 +29,10 @@ const Hero = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-6xl md:text-8xl font-black tracking-tight leading-none mb-6"
+            className="text-6xl md:text-8xl font-black tracking-tight leading-none mb-6 text-white"
           >
             Building the <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 to-gray-500 dark:from-white dark:to-gray-400">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-500">
               Future in Code.
             </span>
           </motion.h1>
@@ -41,7 +41,7 @@ const Hero = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="text-lg text-gray-600 dark:text-gray-400 max-w-lg mb-8 leading-relaxed"
+            className="text-lg text-gray-400 max-w-lg mb-8 leading-relaxed"
           >
             I architect scalable web applications powering ideas from concept to
             scale. Currently transitioning from frontend mastery to full-stack
@@ -63,7 +63,7 @@ const Hero = () => {
             <ScrollLink
               to="contact"
               smooth={true}
-              duration={1000} // Slightly slower for the longer scroll to the bottom
+              duration={1000}
               offset={-80}
               className="px-10 py-4 border-2 border-white text-white rounded-full font-bold hover:bg-white hover:text-black transition-all text-center cursor-pointer"
             >
@@ -73,7 +73,7 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* Floating Glass Cards */}
+      {/* Floating Glass Card (Always Dark Mode Style) */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
@@ -83,17 +83,19 @@ const Hero = () => {
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-3">
             <div className="w-3 h-3 rounded-full bg-green-500 animate-pulse" />
-            <span className="text-sm font-mono opacity-70">Server: Online</span>
+            <span className="text-sm font-mono opacity-70 text-white">
+              Server: Online
+            </span>
           </div>
           <div className="space-y-1">
-            <div className="h-1 w-32 bg-gray-200/20 rounded-full overflow-hidden">
+            <div className="h-1.5 w-32 bg-white/20 rounded-full overflow-hidden">
               <motion.div
                 animate={{ width: "85%" }}
                 transition={{ duration: 2, delay: 1 }}
                 className="h-full bg-blue-500"
               />
             </div>
-            <span className="text-[10px] uppercase opacity-50 font-bold">
+            <span className="text-[10px] uppercase opacity-50 font-bold text-white">
               Node.js Proficiency
             </span>
           </div>
