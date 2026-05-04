@@ -35,12 +35,14 @@ const Contact = () => {
             Available for Opportunities
           </h2>
 
-          <h1 className="text-5xl md:text-8xl font-black text-white mb-12 tracking-tighter leading-none">
-            LET’S BUILD THE <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">
-              FUTURE TOGETHER.
-            </span>
-          </h1>
+          
+<h1 className="text-5xl md:text-8xl font-black text-white mb-12 tracking-tighter leading-none">
+  LET’S BUILD THE <br /> 
+  <span className="inline-block py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">
+    FUTURE TOGETHER.
+  </span>
+</h1>
+          
 
           {/* Interaction Hub */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
