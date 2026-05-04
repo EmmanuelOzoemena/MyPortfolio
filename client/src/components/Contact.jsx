@@ -37,16 +37,16 @@ const Contact = () => {
 
           
           <h1 className="text-5xl md:text-8xl font-black text-white mb-12 tracking-tighter leading-none">
-30	+
-            LET’S BUILD THE <br /> 
-31	+
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">
-32	+
-              FUTURE TOGETHER.
-33	+
-            </span>
-34	+
-          </h1>
+
+  LET’S BUILD THE <br /> 
+
+  <span className="inline-block py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">
+
+    FUTURE TOGETHER.
+
+  </span>
+
+</h1>
 
           {/* Interaction Hub */}
           <div className="flex flex-col md:flex-row items-center justify-center gap-6">
