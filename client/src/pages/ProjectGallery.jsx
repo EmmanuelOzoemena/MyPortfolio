@@ -1,13 +1,23 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { getProjects } from "../services/project.api";
-import { FiSearch, FiExternalLink, FiGithub } from "react-icons/fi";
+import {
+  FiSearch,
+  FiExternalLink,
+  FiGithub,
+  FiChevronLeft,
+  FiChevronRight,
+} from "react-icons/fi";
 
 const ProjectGallery = () => {
   const [projects, setProjects] = useState([]);
   const [filter, setFilter] = useState("All");
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+
+  // Pagination State
+  const [currentPage, setCurrentPage] = useState(1);
+  const projectsPerPage = 9;
 
   const categories = ["All", "Basic", "Full Stack", "Frontend", "Backend"];
 
@@ -27,18 +37,34 @@ const ProjectGallery = () => {
     fetchAllProjects();
   }, []);
 
+  // Reset to page 1 whenever filters or search change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filter, search]);
+
   // Search & Filter Logic
   const filteredProjects = projects.filter((p) => {
     const categoryMatch = filter === "All" || p.category === filter;
-
     const searchTerm = search.toLowerCase();
     const titleMatch = p.title.toLowerCase().includes(searchTerm);
-
-
     const techMatch = p.tech.some((t) => t.toLowerCase().includes(searchTerm));
 
     return categoryMatch && (titleMatch || techMatch);
   });
+
+  // Pagination Logic
+  const indexOfLastProject = currentPage * projectsPerPage;
+  const indexOfFirstProject = indexOfLastProject - projectsPerPage;
+  const currentProjects = filteredProjects.slice(
+    indexOfFirstProject,
+    indexOfLastProject,
+  );
+  const totalPages = Math.ceil(filteredProjects.length / projectsPerPage);
+
+  const paginate = (pageNumber) => {
+    setCurrentPage(pageNumber);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   if (loading) {
     return (
@@ -63,8 +89,8 @@ const ProjectGallery = () => {
             Archive<span className="text-blue-600">.</span>
           </motion.h1>
           <p className="text-gray-400 max-w-xl">
-            A complete collection of technical projects—ranging from MERN stack
-            applications to interactive frontend experiences.
+            A complete collection of my journey from high-performance full-stack
+            systems to the very first lines of HTML I ever wrote.
           </p>
         </div>
 
@@ -104,7 +130,7 @@ const ProjectGallery = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project) => (
+            {currentProjects.map((project) => (
               <motion.div
                 key={project._id || project.id}
                 layout
@@ -173,6 +199,43 @@ const ProjectGallery = () => {
             ))}
           </AnimatePresence>
         </motion.div>
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex justify-center items-center gap-4 mt-16">
+            <button
+              onClick={() => paginate(currentPage - 1)}
+              disabled={currentPage === 1}
+              className="p-3 rounded-xl border border-white/10 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/5 transition-colors"
+            >
+              <FiChevronLeft size={20} />
+            </button>
+
+            <div className="flex gap-2">
+              {[...Array(totalPages)].map((_, i) => (
+                <button
+                  key={i + 1}
+                  onClick={() => paginate(i + 1)}
+                  className={`w-12 h-12 rounded-xl border font-bold transition-all ${
+                    currentPage === i + 1
+                      ? "bg-blue-600 border-blue-600 text-white"
+                      : "border-white/10 text-gray-500 hover:border-white/30"
+                  }`}
+                >
+                  {i + 1}
+                </button>
+              ))}
+            </div>
+
+            <button
+              onClick={() => paginate(currentPage + 1)}
+              disabled={currentPage === totalPages}
+              className="p-3 rounded-xl border border-white/10 text-white disabled:opacity-30 disabled:cursor-not-allowed hover:bg-white/5 transition-colors"
+            >
+              <FiChevronRight size={20} />
+            </button>
+          </div>
+        )}
 
         {/* Empty State */}
         {filteredProjects.length === 0 && (
