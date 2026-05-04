@@ -40,7 +40,7 @@ const Contact = () => {
 
   LET’S BUILD THE <br /> 
 
-  <span className="inline-block py-2 text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">
+  <span className="inline-block py-2 bg-clip-text bg-gradient-to-r from-blue-600 to-emerald-500">
 
     FUTURE TOGETHER.
 
