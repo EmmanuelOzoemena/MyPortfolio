@@ -153,6 +153,8 @@ const ProjectGallery = () => {
                         href={project.github}
                         target="_blank"
                         rel="noreferrer"
+                        aria-label={`View ${project.title} source code on GitHub`}
+                        title="View source code"
                         className="p-3 bg-white text-black rounded-full hover:bg-blue-600 hover:text-white transition-colors"
                       >
                         <FiGithub size={20} />
@@ -162,11 +164,37 @@ const ProjectGallery = () => {
                       href={project.link}
                       target="_blank"
                       rel="noreferrer"
+                      aria-label={`Visit ${project.title} live site`}
+                      title="Visit live site"
                       className="p-3 bg-white text-black rounded-full hover:bg-blue-600 hover:text-white transition-colors"
                     >
                       <FiExternalLink size={20} />
                     </a>
                   </div>
+                </div>
+
+                {/* Touch-friendly actions stay visible below the image on small screens. */}
+                <div className="flex md:hidden border-b border-white/10 bg-black/20">
+                  {project.github && (
+                    <a
+                      href={project.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="flex flex-1 items-center justify-center gap-2 border-r border-white/10 px-3 py-3 text-[10px] font-bold uppercase tracking-widest text-gray-300 transition-colors hover:bg-white/10 hover:text-white"
+                    >
+                      <FiGithub size={15} />
+                      Repo
+                    </a>
+                  )}
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex flex-1 items-center justify-center gap-2 px-3 py-3 text-[10px] font-bold uppercase tracking-widest text-blue-400 transition-colors hover:bg-blue-500/10 hover:text-blue-300"
+                  >
+                    <FiExternalLink size={15} />
+                    Live site
+                  </a>
                 </div>
 
                 {/* Content */}
