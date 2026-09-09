@@ -173,7 +173,6 @@ const ProjectGallery = () => {
                   </div>
                 </div>
 
-                {/* Touch-friendly actions stay visible below the image on small screens. */}
                 <div className="flex md:hidden border-b border-white/10 bg-black/20">
                   {project.github && (
                     <a

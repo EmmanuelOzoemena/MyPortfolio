@@ -23,9 +23,10 @@ const Navbar = () => {
     { name: "Contact", to: "contact" },
   ];
 
-  const handleNavClick = (section) => {
+  const handleNavClick = (event, section) => {
     setMobileMenu(false);
     if (location.pathname !== "/") {
+      event.preventDefault();
       navigate("/", { state: { target: section } });
     }
   };
@@ -62,6 +63,7 @@ const Navbar = () => {
                 duration={800}
                 offset={-80}
                 spy={true}
+                onClick={(event) => handleNavClick(event, link.to)}
                 activeClass="bg-blue-600 text-white shadow-lg shadow-blue-500/30"
                 className="relative px-5 py-2 text-[10px] uppercase tracking-widest font-bold transition-all rounded-full text-gray-400 hover:text-white cursor-pointer"
               >
@@ -117,7 +119,7 @@ const Navbar = () => {
                   smooth={true}
                   duration={800}
                   offset={-80}
-                  onClick={() => setMobileMenu(false)}
+                  onClick={(event) => handleNavClick(event, link.to)}
                   className="text-3xl font-black text-white hover:text-blue-600 transition-colors cursor-pointer uppercase tracking-tighter"
                 >
                   {link.name}
